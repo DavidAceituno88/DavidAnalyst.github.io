@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Dave Linares Data Analyst</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header">
+				<h1><a href="index.html">David Linares</a> Portfolio</h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="https://www.linkedin.com/in/david-aceituno-478128204" target=”_blank”>Linkedin</a></li>
+						<li><a href="https://github.com/DavidAceituno88" target=”_blank”>Github</a></li>
+						<!--<li><a href="#" class="button">Sign Up</a></li> -->
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Main -->
+				<section id="main" class="container">
+					<header>
+						<h2>Canada's Interprovincial Migration</h2>
+						<p>Data Aanalysis</p>
+					</header>
+					<div class="box">
+						
+						<h3>Case of study</h3>
+						<p>Canada was ranked #8 on the list of Countries with the Highest number 
+							of Foreign-Born Residents, with 8 million immigrants in 2020 <i>(according to worldpopulationreview.com)</i>
+							So it is no secret that immigration plays a major role in the development of Canada;
+							but there is another form of migration that we don't hear about most of the time.<br/>
+							<b>Interprovincial Migration</b>, is the type of migration that occurs between provinces.
+							When my family and I moved to Nova Scotia in 2022 and started looking for a place to live (rent);
+							we faced one of the first signs of the rapid increase of internal migration toward this province:<br/>
+							<b>High housing prices</b> and the <b>lack of available places</b> to rent.
+							It didn't took us a long time to figure out that Canadians from other provinces were the ones who
+							either bought or rented most of the houses available in this province, and this all started during
+							the pandemic.
+						</p>
+						<p>
+							So i decided to dig a little deeper, the main question wasn't why, but <b>Where to and Where from?</b> The first thing 
+							I did was to go into the official Canadian statistics web site to find about the interprovincial migration in the
+							 last 5 years <i>(https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1710002201)</i>, where I found all the information 
+							 I needed, got the .csv files, transformed and cleaned the information, 
+							 generated the queries I needed plus some new tables using <b>SQL</b> and <b>Google Sheets.</b> Then after I got all the information 
+							 in good shape I built a dashboard/report on <b>Power Bi.</b>
+						</p>
+						<p>These are the tables i got in raw form for each province. The tables consisted of the destinations where the habitants of that province migrated to by year.
+							<p>
+							<img src="/images/raw.jpg" width="100%">
+							</p>
+						</p>
+						
+						<p>That gave me the <b>Where to?</b>, so in order for me to get the <b>Where from?</b> i collected all  the rows with the same province as destination in all the tables
+							and created a new table called to[Province_Name] that will give me the where from and i called that column "Source". 
+							
+							<p>
+							<img src="/images/raw.jpg" width="100%">
+							</p>
+						</p>
+						<p>
+							Lastly, I calculated the <b><i>"balance"</i></b> which will give us a real perspective of how the Interprovincial migration affected each province.<br/>
+                            I calculated this by subtracting the people that left the province from the people that arrived in the province year by year and in the last 5 years.
+                            That is just the numerical raw balance but then I calculated the "Percentual balance" which is the percentual balance difference from the previous year.
+                            For example, if last year your immigration balance was +100 people and the next year your balance is -50, then your percentual balance compared to the last year is -50%
+                            This way we can compare the positive or negative growth of each province more objectively, plus we can now see trends and tendencies.
+							<p>
+							<img src="/images/balance1.png" width="100%">
+							</p>
+							<p>
+								As you can see we don't show the percentual balance from 2017 given that we take that year as our initial reference or our 100%
+								<p>
+								<img src="/images/balancepercent.png" width="100%">
+							</p>
+							</p>
+						</p>
+						<h3>The BI Dashboard</h3>
+						<p>The dashboard consists of The main sheet that I called "The big picture" Here we can see <b>When the migration peaked?</b>,
+							 <b>Wich provinces</b> are having a negative growth and a positive growth,
+                            <b>Where do Canadians tend to migrate to?</b> and <b>What provinces are the main ones sending people to other provinces?</b>.
+							<br/>If You click on the ">" button you will then see a province by province more in depth Analysis.
+						</p>
+						<div class="row">
+							<iframe title="Internal_Migratioin_Canada" width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiM2RiZTlhZjgtY2NjNS00ZDY5LTk0Y2MtMTY3NmJiMzMxNmM1IiwidCI6IjJkMzliNTI5LTU0NmEtNDJhOC1iNmVmLTlhOTJmZGRiYTMwZSJ9" frameborder="0" allowFullScreen="true"></iframe>
+							<div class="row-6 row-12-mobilep">
+								<br/>
+								<h3>The results</h3>
+								<p><b>Where to?</b> Although a lot of people are still moving to the main provinces: <b>Ontario</b> and <b>British Columbia</b> , 
+									those two Provinces
+									 where at the same time the ones losing a lot of people, in fact more people where leaving those provinces than coming to those provinces.
+									  <b>Ontario</b> being the province that <b>lost more people</b> after calculating the <i>"balance"</i> 
+									  (the difference between the number of people coming vs leaving), Ontario had a big negative migration balance, 
+									  they had a <b>-900% population balance</b> from internal migration. It seemed like the pandemic and its side effects on the housing 
+									  and economy made a lot of people move in a big "Exodus" towards other provinces, Only <b>in 2022 they lost +47k people</b>
+									   in that balance. 
+									  This means that the difference between the people who moved to Ontario vs the people who left Ontario was of -47k. On the other hand,
+									  we have <b>Nova Scotia</b> with a positive migration <b>Balance of +14k</b> in 2022, and a <b>percentual balance of +190%</b>.
+									   Nova Scotia seemed like the 
+									  place where <b>everyone who arrived wants to stay</b>, just followed by <b>New Brunswick</b> with a positive migration <b>Balance of +10k</b> and a 
+									  percentual balance of <b>+500%!!</b></p>
+									  <p>
+										<img src="images/bigpic.png" width="100%">
+									</p>
+									  <p >
+										<h3>Ontario </h3>
+										<img src="/images/ontario.png" width="100%" >
+									</p>
+									<p>
+										<h3>Nova Scotia</h3>
+										<img src="images/Nova Scotia.png" width="100%">
+									</p>
+								<p>
+									<b>Where from?</b> The answer of where or which provinces are sending more people out to other provinces is 
+									directly proportional to the first question... The provinces losing more people are the ones that are
+									 <b>re-populating other small provinces</b>(small in most cases except for Alberta), <b>Ontario</b> is the province 
+									 where most of the migration is coming from, followed by Alberta and British Columbia. In the last 5 years, 
+									 Ontario lost <b>+300k people</b>, Alberta <b>+290k,</b> and BC lost<b>+200k</b> . Even when those provinces were the top 3 destinations 
+									 for internal migration, they are still <b>losing more people</b> than the rest of the country.
+									 <img src="images/leave.png" width="100%">
+								</p>
+							</div>
+							<div class="row-6 row-12-mobilep">
+								<h3>Conclusion</h3>
+								<p>While making this analysis i realized that i might have not discovered anything new amongst
+									 Canadians who are migrating to other provinces or know of someone who migrated; but is 
+									 not the same to have an idea or a vague perception of how <b>Canada's demographic</b> is now way
+									  different because of a massive internal migration mainly because of the pandemic and the 
+									  cost of living.</p>
+									  <p>
+										Now it seems like the <b>Atlantic</b> side of Canada is a "hot spot" because of the <b>lack of 
+										population</b> and relatively low Housing Prices, <b>2020 / 2021</b> were the key years for this <i>exodus</i>.
+									  </p>
+									  <p>
+										But... now this brings more questions to my mind, like, since people from Ontario, BC, Alberta, 
+										and Quebec, are massively populating small provinces, how will this affect the infrastructure 
+										of those provinces, how will the newcomers change the culture, the quality of services, 
+										traditions, etc. Will the province change the newcomers or will the newcomers change 
+										the province? The rabbit hole is deep, but the next year will tell us more about it, 
+										i will keep digging since i believe that im witnessing something historical, a 
+										breaking point in CanadianHistory. <b>You can access all of my files  
+										here</b> <a href="https://github.com/DavidAceituno88/Internal_Migration_Canada_DataAnalisys">https://github.com/DavidAceituno88/Internal_Migration_Canada_DataAnalisys</a>
+										<br/>
+									  <a href="https://www.linkedin.com/in/david-aceituno-478128204/">Linkedin</a>
+									  </p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer 
+				<footer id="footer">
+					<ul class="icons">
+						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>-->
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
