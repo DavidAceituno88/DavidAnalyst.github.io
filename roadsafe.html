@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Dave Linares Data Analyst</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header">
+				<h1><a href="index.html">David Linares</a> Portfolio</h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="https://www.linkedin.com/in/david-aceituno-478128204" target=”_blank”>Linkedin</a></li>
+						<li><a href="https://github.com/DavidAceituno88" target=”_blank”>Github</a></li>
+						<!--<li><a href="#" class="button">Sign Up</a></li> -->
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Main -->
+				<section id="main" class="container">
+					<header>
+						<h2>USA NHTSA Road Safe Analysis</h2>
+					</header>
+					<div class="box">
+						
+						<h3>The Statistics and the main issue </h3>
+						<p>The number of people dying on America’s roads dropped by nearly 1,000 in 2018, according to newly released data from NHTSA. This marks the second consecutive year that motor vehicle fatalities declined. While the 2018 decrease was felt across many areas, pedestrian, bicyclist and large-truck occupant fatalities saw increases. 
+                            <br/>
+                            By the numbers
+                            <ul>
+                               
+                            <li>36,560 people were killed in traffic crashes in 2018, a 2.4% decrease from 2017</li>
+                            <li>1,038 children (14 and younger) died, a more than 10% decline</li>
+                            <li>9,378 speeding-related deaths, an almost 6% drop</li>
+                            <li>4,985 motorcycle fatalities, an almost 5% decrease</li>
+                            <li>6,283 pedestrians died, a more than 3% increase, and the most deaths since 1990</li>
+                            <li>857 bicyclist deaths, a more than 6% increase</li>
+                            <li>885 large-truck occupants died, an almost 1% increase</li>
+                            <li>The decrease in traffic deaths come as people drove even more. Estimated vehicle 
+                            miles traveled increased by 0.3% from 2017 to 2018, while the fatality rate per 100 million VMT decreased by over 3%. This is the lowest fatality rate since 2014.
+                            </li>
+                        </ul>
+						</p>
+                        <p>
+                            Over the past 40 years, there has been a general downward trend in traffic fatalities. 
+                            Safety programs such as those increasing seat belt use and reducing impaired driving 
+                            have substantially lowered the traffic fatalities. In 2018, drunk driving fatalities 
+                            dropped about 4%, accounting for 29% of 2018 traffic deaths — the lowest percentage 
+                            since 1982 when NHTSA started reporting alcohol data.
+
+                            Vehicle improvements such as air bags and electronic stability control have also contributed greatly to the reduction of traffic deaths on our roads. In 2018, there was about a 10% decrease from 2017 in passenger vehicle occupants killed in rollover crashes. 
+                        </p>
+						<p>
+							<h3>The data</h3> 
+                            I got the data from the NHTSA website from regarding the <B>Miles driven</B>,<B>Deaths</B>,<B>Fatality Rate</B> per year and state.
+                            so that later i could compare it to the Target that the USA has for their fatality rate.
+						</p>
+						<p>
+							<img src="images/rse.png" width="100%">
+									 
+									  </p>
+									  <h3>The dashboard</h3>
+                                      <iframe title="Report Section" width="100%" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiZDc1OTY1YWUtMjM4MS00MTU1LThkOGUtN2QwZGU2MDM5NzNhIiwidCI6IjJkMzliNTI5LTU0NmEtNDJhOC1iNmVmLTlhOTJmZGRiYTMwZSJ9" frameborder="0" allowFullScreen="true"></iframe>
+									  <br/><br/>
+                                      <p>Once i've ETL all the data and saved it in the .csv file (image you see above)
+                                        Then i started working on the main dashboard with the <b>following questions in mind</b>:
+										<br/>
+                                        <ul>
+                                            <li>What's the <b>number of Deaths</b> per 100 million vehicle miles traveled per state in 2018?</li>
+                                            <li>How is the <b>average of deaths per year</b> doing against the target each state has? (yes as creepy as it might sound there is a target for that)</li>
+                                            <li>Does <b>driving more</b> mean more deaths or are there any states where people dove more and had les fatalities?</li>
+                                        </ul>
+									  <img src="images/main dashboard road safe.png" width="100%">
+									  <br/><br/>
+									  In the image above we can see our Main Dashboard where we can visualize in a more user friendly way the answer to the main questions<br/><br/>
+									  We can find on our left side a gauge that measures the number of deaths per 100 million miles traveled. The gauge's color changes from blue -> yellow -> red 
+                                      depending on how high the number of deaths is, and we can also find a line that indicates the Target of fatalities, that way we can see how good or bad each state is doing.
+                                      <br/> <br/>
+                                      <b>A KPI</b> for the fatalities per year, this KPI also is color oriented following the same color logic as the GAUGE but with 
+                                      the difference that this KPI reflects how good each state is doing against their own goal NOT THE NATIONAL GOAL of 100 million miles traveled.
+                                      <br/> <br/>
+                                      <b>An Area chart</b> that compares the number of miles driven vs the number of deaths per year and state, The purple area represents
+                                      the number of deaths by year and the blue area represents the number of miles driven (in millions)
+									  <br/><br/>
+									  <b>Two cards</b> where we can see the Number of miles driven from 2007 to 2018 and the Fatalities from 2007 to 2018
+									  <br/><br/>
+                                      <b>A filled map</b> that shows the state selected and a Drop down menu where we can select the state we want to visualize
+                                      <br/><br/>
+                                      <h3>Drill Through the other pages</h3>
+                                      In order for us to have a more in depth view of each states i created three more pages with graphs regarding <b>Fatalities</b>,
+                                      <b>Miles Driven</b>,<b>Fatality Rate</b>
+                                      <br/>
+                                      So in order for us to access those pages and visualize the data related to the state we have selected, we must right click on the colored state in the map and select 
+                                      "drill through"
+                                      <br/><br/>
+									  <img src="images/Drill 1.png" width="100%">
+                                      <br/><br/> 
+                                      And if we want to go back to the Main Dashboard we must click on the back button that's located on the bottom right hand side corner
+                                      <br/><br/>
+                                      <img src="images/Drill 2.png" width="100%">
+                                    </p>
+                    
+									  <h3>Fatalities</h3>
+                                      <p>This graphic represents the number of deaths per year. Here we can see that the year with more fatalities in California was 2017 
+                                        and that in the two previous years to 2018 this number went up again after a big decrease in fatalities.
+                                    <br/><br/>
+                                    <img src="images/fatalitiesroad.png" width="100%">  
+                                    </p>
+                                    <h3>Miles Driven</h3>
+                                      <p>This graphic represents the number of miles driven. Pretty much like the previous one we can 
+                                        easily visualize the number of miles driven per year.
+                                    <br/><br/>
+                                    <img src="images/milesdrivenroad.png" width="100%">  
+                                    </p>
+                                    <h3>Fatality Rate</h3>
+                                      <p>And lastly, we can see how this graphic gives us a better view on how good is each state doing
+                                        compared to the <b>NATIONAL target</b> from 2007 to 2018.
+                                        Here we can see how California is doing, relatively Ok when it comes to their fatality rate and that their worst years have been
+                                        2007 and 2017. This graph goes from blue to red according to how high their Fatality rate is Yellow being the middle color.
+                                    <br/><br/>
+                                    <img src="images/fatalityrateroad.png" width="100%">  
+                                    </p>
+							<p>
+                                <h3>Conclusions</h3> 
+                               Just like the official NHTSA said, there is a correlation between the number of miles driven and the number of Fatalities,
+                               but that seems not to be the case in some states like California, Colorado and New Jersey.
+                               <br/>
+                               Why are these states doing "good" regarding that they drive more and have less fatalities, that we don't know yet; but it will be a good idea to take a look
+                               at what ever they are doing and use them as an example to keep the roads safe.
+                            </p>
+
+							Project's github repository <a href="https://github.com/DavidAceituno88/USA-ROAD-SAFETY-ANALYSIS-NHTSA">https://github.com/DavidAceituno88/USA-ROAD-SAFETY-ANALYSIS-NHTSA</a>
+							<br/>
+							<a href="https://www.linkedin.com/in/david-aceituno-478128204/">Linkedin</a>
+						</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer 
+				<footer id="footer">
+					<ul class="icons">
+						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>-->
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
