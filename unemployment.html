@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Dave Linares Data Analyst</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header" >
+				<h1><a href="index.html">David Linares</a> Portfolio</h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="https://www.linkedin.com/in/david-aceituno-478128204" target=”_blank”>Linkedin</a></li>
+						<li><a href="https://github.com/DavidAceituno88" target=”_blank”>Github</a></li>
+						<!--<li><a href="#" class="button">Sign Up</a></li> -->
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Main -->
+				<section id="main" class="container">
+					<header>
+						<h2>Canada's Unemployment Analysis</h2>
+						
+					</header>
+					<div class="box">
+						
+						
+						<p><h4><i>OTTAWA - Canada's unemployment rate ticked up in May for the first time in nine months, 
+                            but forecasters say the Bank of Canada will have to see more softening in the economy before 
+                            it takes it takes a step back from raising interest rates.</i><
+                        </p>
+						<p>
+							This Analysis aims to give a better perspective on where does 
+                            Canada stands now regarding the Unemployment and Employment Rate compared 
+                            to previous years. In order to make this analysis possible, i got
+                            a data set that contains all the unemployment and employment rates 
+                            since 1976, including the number of part time and full time jobs,
+                             minimum age and maximum age of employees, etc./h4>
+						</p>
+						<p> I got this data set from Kaggle</p>							
+							<p>
+							<img src="/images/Employment/raw csv.png" width="100%">
+							</p>
+						</p>
+						<p>
+                            <h3><b>Cleaning</b></h3>
+							<p>
+								The main issues that I encountered while dealing with the original table were:
+                                <br/><br/>
+<b>1.- <i>The date format</i>:</b> I wanted to get the month and the year of each record in two different columns, and for some reason in the original table, the months were referred to as weeks... but anyway I just used a simple Case sentence to fix this. And then in the date column, I got rid of the month and the "-" char, plus I casted that value into an INT for further analysis purposes.
+							</p>
+							<p>
+								<div>
+							<img src="/images/Employment/cleaning/clean1.png" width="100%">
+						</div>
+							</p>							
+								<p>
+									<b>2.- </b>Giving more appropriate names to the columns so that they will be easy to identify.
+								</p>	
+                                <div>
+                                    <img src="/images/Employment/cleaning/clean2.png" width="100%">
+                                </div>						
+						
+						<b>Standarize/format the data:</b>
+                        <br/>
+                        <p>
+                            To make the information more readable I had to clean some columns like the Age group: 
+                            this row's data type was a string with the following format: "from N to N" N being a number.
+                        </p>
+                        <p>
+                            Then I created new columns of type decimal, where I will copy the data from the
+                             rows that had "bad" names, these new columns were named with a more descriptive 
+                             name and followed the standard for column names in SQL. Before copying those
+                              values i Cast all the non-null values to decimal and finally converted the null 
+                              values into 0s, then I copied them to the new columns
+                        </p>
+						<div>
+                            <img src="/images/Employment/cleaning/clean3.png" width="100%">
+                            
+                        </div>	
+						<div><img src="/images/Employment/cleaning/clean4.png" width="100%"></div>
+
+						<br/>
+								<h3><b>Analytics</b></h3>
+								<p>
+									Now I needed to perform some previous analysis on the data that I just cleaned. So that it will make my Power Bi analysis way easier. Since my analysis is pretty much centered on the Employment and Unemployment rates of given years, months, provinces, etc. I decided to create a table where I will calculate the averages of different Employment and Unemployment rates, part-time, full-time, per province, per year, per month, etc.
+								</p>
+								
+                                <div><img src="/images/Employment/cleaning/analytics1.png" width="100%"></div>
+								<br/>	  
+                                
+                                <h3><b>Prime Ministers</b></h3>
+								<p>
+									So before i joined the analysis table with the clean Unemployment table. I wanted to add another piece of data to my main table. The prime ministers and their political party. This way i could analyse how each political party did during their mandate, i have no political preference (im new to this country) so i did this to have an 
+                                    objective review on how each political party did regarding employment in Canada.
+								</p>
+                                <br/>
+                                <p>To make this possible i scraped a table from Wikipedia using python</p>
+								 
+
+                                <div><img src="/images/Employment/scraper.png" width="100%"></div>
+                                
+                                <br/>
+                                    <b>The csv that i've generated looked like this</b>
+								<br/><br/>	  
+                                <div><img src="/images/Employment/raw ministers.png" width="100%"></div>
+
+								<p>So this csv file had many columns and data that I didn't find useful or that had strings to be modified so that I could perform analysis on them. Here is my cleaning code:</p>		
+                                <p>First, I had to rename all the columns, then I had to get the year from the date columns so that I could have a start mandate and end mandate columns. The first one was easy, just trimmed the start_mandate column; BUT the end_mandate was the trickiest one given that the actual prime minister is still elected so it said "still elected" in that column, 
+                                    so I had to use the CASE sentence to substitute any string value with the actual year.</p>
+                                    <p>Lastly to get rid of the duplicate columns with the weird text and the presidents from the 1800s I used some conditionals and regexp.</p>
+                              
+                                <div><img src="/images/Employment/cleaning/prmeclean1.png" width="100%"></div>
+								<br/>
+                                <h4><b>The challenge of the century:</b></h4>
+                                <p>Since the year format that I got from the original table was just the last two digits of the year ex. Instead of 1978, I had just the 78. I had to 
+                                    figure out a way to distinguish the dates from the 1900s from the ones of the 2000s.</p>
+                                <p><h4><b>The solution:</b></h4></p>
+                                <p>1.- I needed to assign a number to each Prime Minister that number will represent the chronological order in which they were elected for example the first prime minister of the 1900s will have the number 1 and then the following 
+                                    elected minister will have the number 2 and so on, so that I can now have a way to order them.</p>
+                                <p>2.- Now that I had them in order I needed to find the Biggest year value because that year will be the last year of the past century (given that we are still in 2023...). That row will act as a flag or a pointer, this pointer will tell me that if a prime minister has an "Order" value less than the "Order" value of the row with the maximum 
+                                    Year value then that record belongs to the past century, else, it belongs to the present century.</p>
+                                    <div><img src="/images/Employment/cleaning/prmeclean2.png" width="100%"></div>
+                                    <div><img src="/images/Employment/cleaning/prmeclean3.png" width="100%"></div>
+                                <br/>
+                                    <p>This is the Clean and final version of the Prime Ministers table:</p>
+                                    <div><img src="/images/Employment/ministers clean.png" width="100%"></div>
+                                    
+                                    <p><h4><b>Final Table: </b></h4>Once i created the employment analysis and the prime ministers table i Joined all the tables and created the final EmploymentCanadaAnalysis table.</p>
+                                    <div><img src="/images/Employment/cleaning/finaltableclean.png" width="100%"></div>
+                                    <br/>
+                                    <p>And this is the Final table that i created</p>
+                                    <br/>
+                                    <div><img src="/images/Employment/finaltbl1.png" width="100%"></div>
+                                    <div><img src="/images/Employment/finaltbl2.png" width="100%"></div>
+                                    <div><img src="/images/Employment/finaltbl3.png" width="100%"></div>
+                                    <br/>
+                                    <p>As you can see this is quite a big table, but it contains all the information that I need in order to create my dashboard and visualize my analysis.</p>
+                                    <br/>
+                                    <h3><b>The Dashboard</b></h3>
+									<p>This dashboard gives us the option to select a range of years to 
+										get the average Employment and Unemployment rate per province.
+										It also contains a graph that presents the historical Employment 
+										and Unemployment rate of the whole country. A comparative of the historical
+										full time and partime employment jobs and two graphs that analyze the 
+										performance of each Politial Party regarding employment and unemployment during
+										their mandates.
+									</p>
+									<p>
+										If you right click on the left-handside Unemployment rate graph and select 
+										"drill-through" it will take you to the second page of the dashboard, where
+										you'll be able to see a more in depth analysis of the selected province.
+									</p>
+									<p>The last page contains an analysis of each Political Party's Employment and Unemployment rates,
+										and the provinces that benefited the most while the selected Political Party was elected.
+									</p>
+
+                                    <iframe title="Report Section" width="100%" height="800" src="https://app.powerbi.com/view?r=eyJrIjoiZTc5MzUwMWUtOTQxYi00YWM2LTg0YWYtZTVjMzZiNmEzOWI2IiwidCI6IjJkMzliNTI5LTU0NmEtNDJhOC1iNmVmLTlhOTJmZGRiYTMwZSJ9" frameborder="0" allowFullScreen="true"></iframe>
+									<br/>
+									<p>In the image below we can see that since 1976 till now Newfoundland has had the highest unemployment rate and Saskatchewan the lowest.</p>
+									<div><img src="/images/Employment/dashboard1.png" width="100%"></div>
+									<br/>
+									<p>But if we change the time frame to the last 10 years we notice that provinces like Quebec and BC improved on their unemployment rate, but Ontario and Alberta got worst on their unemployment.</p>
+									<div><img src="/images/Employment/dashboard1.1.png" width="100%"></div>
+									<br/>
+									<p>The bottom half of the dashboard contains 4 different graphs:</p>
+									<p>The first one on the upper left corner compares the Employment and Unemployment rate, here we can see how in 2020 due to the pandemic, the unemployment rate went up and the employment rate went down like never seen before.</p>
+									<p>The graph below that one compares the Full time and Part time employment rates, these rates have pretty much stayed the same over the last couple of decades, although we can see a slight rise in Part Time employment in 2010.</p>
+									<p>And lastly, the right-hand side contains 2 graphs that compare how each political party did during their mandates regarding Employment and Unemployment. We have to consider Again that the year 2020 was catastrophic for the economy and the employment rate, regarding who would have been in power during those dark times.</p>
+									<div><img src="/images/Employment/dashboard2.png" width="100%"></div>
+									<br/>
+									<p>Now if we right click on the unemployment rate per province graph we can drill through that province to have a better look at its statistics
+									</p>
+									<div><img src="/images/Employment/drill.png" width="100%"></div>
+									
+									<br/><p>That will take us to the next page of the dashboard. This page contains the statistics regarding the Average Minimum and Max age of workers, the Average Labour force, And 3 graphs</p>
+									<p>The Employment distribution graph reflects the unemployment rate vs the unemployment rate and the full-time vs the part-time employees over a specific time, here, for example, we can see how Nova Scotia in 2022 improved significantly in the number of full-time jobs compared to the last few years. The employment rate stayed pretty much the same but the unemployment rate has been the best in the last years.</p>
+									<p>The last two graphs contain the best months regarding employment and the worst months (the months with the highest unemployment) for that given province. So it seems like the winter months are the ones with the highest Employment rate and spring has the months with the highest Unemployment rates (work during the winter... rest during the warm months hmmm... pretty smart)</p>
+									<div><img src="/images/Employment/province.png" width="100%"></div>
+									<br/>
+									<p>The last page compares how each political party did during the years that they had the power.</p>
+									<p>Here we can see that the Conservative party had an Employment rate of 61.19% and an Unemployment rate of 8.49% on average. We can also see that during the Conservative mandate, the provinces that suffered the worst unemployment rate were all the Atlantic Provinces. And the ones that did the best were Alberta, Saskatchewan, Manitoba, and PEI; so in this case PEI had a good Employment rate and the 2nd worst Unemployment rate...</p>
+									<div><img src="/images/Employment/political party 1.png" width="100%"></div>
+									<br/>
+									<p>The Liberal party during their mandate did a little worst than the Conservative, we must keep in mind the huge role that the pandemic had on these numbers. The average Employment rate was 57.33% and the Unemployment rate was 9.36%. The provinces that had the worst Unemployment rate were the same as the ones during the Conservative mandate; but the provinces that had the best Employment rates were Alberta, Saskatchewan, Manitoba, and Ontario; yes, Ontario took the place of PEI meaning that based on these numbers the Atlantic provinces are the most affected when the Liberal party is in charge of the nation. </p>
+									<div><img src="/images/Employment/political party 2.png" width="100%"></div>
+									<br/>
+									<p>And the Progressive Conservative (they haven't been in power since 1992) did the worst in both Employment and Unemployment Rates. Ontario benefited the most during this Party mandate and the Atlantic provinces once again had the worst Unemployment rates.		</p>
+									<div><img src="/images/Employment/political party 3.png" width="100%"></div>
+                              <br/>
+
+									<h3><b>Observations :</b></h3>
+									<p>Even though it seems like the Liberal Party has a worst performance than the Conservative Party, if we look at the trends of the last 10 years we can see that now the country has the Best Employment and Unemployment rate of the last decade. The Conservative Party left Canada with an Unemployment rate of 8.32% and then when the Liberal Party was elected those numbers improved till 2019 with 7.46% almost a 1% improvement, then The Pandemic was a dark episode for everyone, and in 2022 Canada had the best year with a 6.69% Unemployment rate the best in a decade the same goes for the Employment rate. </p>
+									<div><img src="/images/Employment/conclusion1.png" width="100%"></div> 
+                                   <p>Let me remind you that this is a non-vias analysis as you can see from the moment I got the raw data till the moment I did the analysis and reflected the numbers on the dashboard I never intended to favor any given party. With this being said I can conclude, that Yes there is a difference when each party was or has been in charge but that difference is NOT extreme, Canada has been known for its stable economy and quality of life and we can see that on this analysis, even after a worldwide tragedy this country managed to recover and do even better than before. For this reason, we should focus on the virtues of this country when it comes to stability and how can we exploit this to get the most out of it so we can achieve a better quality of life and a more fulfilling life.</p>
+
+
+								   Here is my repository <a href="https://github.com/DavidAceituno88/Employment-in-Canada-Data-Analysis">https://github.com/DavidAceituno88/Employment-in-Canada-Data-Analysis</a>
+								   <br/>
+								   <a href="https://www.linkedin.com/in/david-aceituno-478128204/">Linkedin</a>
+							   </p>
+
+
+							</div>
+
+							<div class="row-6 row-12-mobilep">
+								
+									
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer 
+				<footer id="footer">
+					<ul class="icons">
+						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>-->
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
